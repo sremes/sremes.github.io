@@ -1,18 +1,28 @@
 ---
 layout: page
-title: About
+title: About Me
 permalink: /about/
 ---
 
-This is the base Jekyll theme. You can find out more info about customizing your Jekyll theme, as well as basic Jekyll usage documentation at [jekyllrb.com](https://jekyllrb.com/)
+I am a machine learning researcher from Finland. I am interested both about developing models as well as implementation details down to the GPU kernels. 
 
-You can find the source code for Minima at GitHub:
-[jekyll][jekyll-organization] /
-[minima](https://github.com/jekyll/minima)
+Currently, I am working at AMD Silo AI as a Principal Member of Technical Staff, Software Engineering.
 
-You can find the source code for Jekyll at GitHub:
-[jekyll][jekyll-organization] /
-[jekyll](https://github.com/jekyll/jekyll)
+## Education
+
+**Doctor of Science (Technology) at Aalto University** (2014-2019)
+
+- Probabilistic Machine Learning
+
+**Bachelor and Master of Science (Technology) at Aalto University** (2009-2014)
+
+- Systems and Operations Research, Information and Computer Science, focusing mostly on Machine Learning
 
 
-[jekyll-organization]: https://github.com/jekyll
+## Work Experience
+
+To be added...
+
+## Publications
+
+To be added...
