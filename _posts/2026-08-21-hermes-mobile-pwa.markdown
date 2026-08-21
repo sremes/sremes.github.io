@@ -5,7 +5,7 @@ date:   2026-08-21 12:00:00 +0300
 categories: pwa android
 ---
 
-I run a Hermes agent on my home server. The desktop app that talks to it is
+I run a Hermes agent daily. The desktop app that talks to it is
 Electron, and I wanted the same interface on my Android phone. Building a
 native client was out of scope for me. Instead, we forked the desktop
 renderer and shipped it as a browser PWA. This post covers why, how the fork
@@ -14,10 +14,10 @@ works, and the bridge layer that made it work.
 ## Why not use the mobile site or a native app
 
 Hermes Desktop is one renderer with two shells: an Electron shell and a web
-renderer. The web renderer already speaks to a gateway over REST and a
-WebSocket. The Electron part exists for local files, native menus, and
-auto-update. None of that matters on a phone where the agent runs on a server
-in another room.
+renderer. The web renderer already speaks to the Hermes gateway over REST
+and a WebSocket. The Electron part exists for local files, native menus, and
+auto-update. None of that matters on a phone where the gateway runs the
+agent remotely.
 
 A thin wrapper around the existing renderer would give us:
 
@@ -106,7 +106,7 @@ fails. Every touch change got verified on the actual device.
 Service worker rules are boring on purpose: hashed assets cache-first,
 navigation network-first with a cached offline fallback, and never intercept
 `/api` or auth paths. Installability, share target, and notifications need a
-secure context, so plain-HTTP LAN testing cannot exercise them — the
+secure context, so plain-HTTP testing cannot exercise them — the
 production deploy sits behind HTTPS.
 
 ## Result
