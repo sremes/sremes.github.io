@@ -8,10 +8,9 @@ categories: pwa android
 I run a Hermes agent daily. The desktop app that talks to it is
 Electron, and I wanted the same interface on my Android phone. Building a
 native client was out of scope for me. Instead, we forked the desktop
-renderer and shipped it as a browser PWA. This post covers why, how the fork
-works, and the bridge layer that made it work.
+renderer and shipped it as a browser PWA.
 
-## Why not use the mobile site or a native app
+## Why not a native app
 
 Hermes Desktop is one renderer with two shells: an Electron shell and a web
 renderer. The web renderer already speaks to the Hermes gateway over REST
@@ -69,8 +68,7 @@ lands on the app's own origin and every request just works.
 
 The WebSocket leg needs care. The `/api` location must set
 `proxy_http_version 1.1` plus `Upgrade` and `Connection` headers. Without
-them, the connection test passes but the live stream never opens — a failure
-mode worth its own debug log.
+them, the connection test passes but the live stream never opens.
 
 Auth is basic-auth against the gateway: `POST /auth/password-login` sets the
 cookie, the app polls `GET /api/auth/me`, and the WebSocket dials with a
@@ -101,17 +99,13 @@ The renderer assumed a mouse and a big window. Changes that mattered:
 One process rule proved itself repeatedly: headless tests pass things a phone
 fails. Every touch change got verified on the actual device.
 
-## Install story
-
-Service worker rules are boring on purpose: hashed assets cache-first,
-navigation network-first with a cached offline fallback, and never intercept
-`/api` or auth paths. Installability, share target, and notifications need a
-secure context, so plain-HTTP testing cannot exercise them — the
-production deploy sits behind HTTPS.
-
 ## Result
 
 The phone gets the full desktop chat experience against the same gateway as
 the desktop app: sessions, tools, streaming, attachments, git review, and
 Android share-sheet integration. One codebase, upstream merges stay cheap,
 and there is no separate mobile stack to rot.
+
+The service worker keeps the caching boring on purpose: hashed assets
+cache-first, navigation network-first with a cached offline fallback, and it
+never intercepts `/api` or auth paths.
