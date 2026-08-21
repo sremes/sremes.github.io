@@ -109,3 +109,10 @@ and there is no separate mobile stack to rot.
 The service worker keeps the caching boring on purpose: hashed assets
 cache-first, navigation network-first with a cached offline fallback, and it
 never intercepts `/api` or auth paths.
+
+## Links
+
+- [hermes-mobile](https://github.com/sremes/hermes-mobile) — the PWA fork
+- [Hermes Agent](https://github.com/NousResearch/hermes-agent) — the agent
+  and its gateway; the desktop renderer lives under `apps/desktop`
+- [Hermes documentation](https://hermes-agent.nousresearch.com/docs)
